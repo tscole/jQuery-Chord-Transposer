@@ -202,20 +202,20 @@
       var keyLinks = [];
       $(keys).each(function(i, key) {
           if (currentKey.name == key.name)
-              keyLinks.push("<a href='#' class='selected'>" + key.name + "</a>");
+              keyLinks.push("<li class='active'><a href='#'>" + key.name + "</a></li>");
           else
-              keyLinks.push("<a href='#'>" + key.name + "</a>");
+              keyLinks.push("<li><a href='#'>" + key.name + "</a></li>");
       });
 
 
       var $this = $(this);
-      var keysHtml = $("<div class='transpose-keys'></div>");
+      var keysHtml = $("<ul class='nav nav-pills transpose-keys'></ul>");
       keysHtml.html(keyLinks.join(""));
       $("a", keysHtml).click(function(e) {
           e.preventDefault();
           transposeSong($this, $(this).text());
-          $(".transpose-keys a").removeClass("selected");
-          $(this).addClass("selected");
+          $(".transpose-keys li").removeClass("active");
+          $(this).closest( "li" ).addClass("active");
           return false;
       });
       
